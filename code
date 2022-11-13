@@ -1,0 +1,101 @@
+#include <iostream>
+#include <locale.h>
+
+using namespace std;
+
+class testing
+{
+protected:
+    string name;
+public:
+   testing()
+    { this->name = " ";}
+
+   testing(string name) {
+        this->name = name;}
+        
+    void setName(string text) { name = text; }
+
+    string getName() {
+        return name;}
+};
+
+class isput : public testing
+{
+    string predmet;
+
+public:
+   isput( string name, string predmet)
+        :testing(  name)
+    {
+        this->predmet = predmet;}
+    
+   isput() {
+        this->predmet = "Math";}
+    ~isput() {}
+    void setpredmet(string text) { predmet = text; }
+    string getpredmet() { return predmet; }
+    void show();
+};
+
+class test : public testing
+{
+protected:
+     string yakuy;
+public:
+    test(string name,string yakuy)
+        :testing(name)
+    {
+this->yakuy = yakuy;
+    }
+    test() {
+        this->yakuy = "Навчальний";}
+    ~test() {}
+    void setyakuy(string text) { yakuy = text; }
+    string getyakuy() { return yakuy; }
+    void show();
+};
+
+class vup : public isput
+{
+    string kogo;
+public:
+    vup( string name,string predmet, string kogo) 
+        :isput(name, predmet)
+    {
+        this->kogo = kogo;  }
+    ~vup() {}
+
+    void setkogo(string text) { kogo = text; }
+    string getkogo() { return kogo; }
+    void show();
+};
+
+
+void isput::show(){
+    cout << "Іспит: " << " " << getName() << endl;
+    cout << "З предмету: " << getpredmet() << endl;
+}
+
+void test::show(){
+    cout << "Тест: " << getName() << endl;
+    cout << "Для: " << getyakuy()  << endl;
+}
+
+void vup::show() {
+    cout <<  getName() << endl;
+    cout << "З предмету: " << getpredmet() << endl;
+    cout << "Для :" << getkogo() << endl;
+}
+
+int main()
+{
+    setlocale(0, "Ukr");
+    isput a("Контрольний", "Фізика");
+    test b("Підготовчий","Підготовки до водіння");
+    vup c("Випускний іспит", "Математика", "студентів 4 курсу");
+
+    a.show();
+    b.show();
+    c.show();
+}
